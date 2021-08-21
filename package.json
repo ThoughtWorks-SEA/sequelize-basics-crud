@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "start:dev": "nodemon index.js",
+    "start:dev": "dotenv nodemon index.js",
     "lint": "./node_modules/.bin/eslint .",
     "test": "jest",
     "test:watch": "jest --watch"
@@ -15,6 +15,7 @@
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {
+    "dotenv-cli": "^4.0.0",
     "eslint": "^7.32.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.24.1",
