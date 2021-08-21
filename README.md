@@ -42,3 +42,12 @@ console.log(`process.env.ENV_VAR=${process.env.ENV_VAR}`);
 ```
 
 Verify the set up with `npm start` and `npm run start:dev`.
+
+## Install Sequelize and Start Exploring
+
+For development environment, configure `.env` to bypass Postgres setup without SSL support.
+```
+PG_SSL_MODE=false
+```
+
+Follow notes in: https://thoughtworks-sea.github.io/developer-training/#/backend/postgresql/sequelize-basics?id=installation

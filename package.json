@@ -8,12 +8,18 @@
     "start": "node index.js",
     "start:dev": "dotenv nodemon index.js",
     "lint": "./node_modules/.bin/eslint .",
+    "lint:fix": "./node_modules/.bin/eslint --fix .",
     "test": "jest",
+    "test:coverage": "jest --coverage",
     "test:watch": "jest --watch"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "pg": "^8.7.1",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.6.5"
+  },
   "devDependencies": {
     "dotenv-cli": "^4.0.0",
     "eslint": "^7.32.0",

@@ -1,2 +1,5 @@
-console.log('Hello World!');
-console.log(`process.env.ENV_VAR=${process.env.ENV_VAR}`);
+import { connectDb } from './utils/db.js';
+
+import SimplePokemon from './db/models/simple-pokemon.model.js'; // eslint-disable-line
+
+connectDb();
