@@ -1,16 +1,17 @@
+import logger from './utils/logger.js';
 import sequelizeConnection from './utils/db.js';
 
 import { initOrGetSimplePokemonModel } from './db/models/simple-pokemon.model.js';
 const SimplePokemon = await initOrGetSimplePokemonModel(sequelizeConnection);
 
 const findAllPokemons = async () => {
-  console.log('========================DEBUG========================');
-  console.log(`findAll() is invoked!`);
-  console.log('========================DEBUG========================');
+  logger.debug('========================DEBUG========================');
+  logger.debug(`findAll() is invoked!`);
+  logger.debug('========================DEBUG========================');
 
   const pokemons = await SimplePokemon.findAll();
-  // console.log(pokemons); // Sequelize model instances with a lot of clutter. Uncomment to inspect.
-  console.log(pokemons.map(model => model.dataValues));
+  // logger.debug(pokemons); // Sequelize model instances with a lot of clutter. Uncomment to inspect.
+  logger.debug(pokemons.map(model => model.dataValues));
 }
 
 export default findAllPokemons;

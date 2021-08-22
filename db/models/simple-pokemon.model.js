@@ -1,3 +1,5 @@
+import logger from '../../utils/logger.js';
+
 /* We need to deconstruct this due to CommonJS and ESM interoperability
     - https://jestjs.io/docs/ecmascript-modules
     - https://stackoverflow.com/questions/47277887/node-experimental-modules-requested-module-does-not-provide-an-export-named
@@ -5,9 +7,9 @@
 import sequelize from 'sequelize';
 const { DataTypes, Model } = sequelize;
 
-const MODEL_NAME = 'SimplePokemon';
-
 class SimplePokemon extends Model { }
+
+const MODEL_NAME = 'SimplePokemon';
 
 const initializeModel = async (sequelizeConnection) => {
   SimplePokemon.init(
@@ -41,18 +43,12 @@ const initializeModel = async (sequelizeConnection) => {
       tableName: 'Simple_Pokemon' // We could lock the name of the database table directly
     }
   );
-
-  // This will drop the database table and recreate empty table whenever application restarts.
-  // Not recommended for production level due to destructive operation, but we will use this to demonstrate.
-  // For production level, to consider Migration support (advanced topic).
-  const synchronizeModel = async () => await SimplePokemon.sync({ force: true });
-  await synchronizeModel();
 };
 
 export const initOrGetSimplePokemonModel = async (sequelizeConnection) => {
-  console.log('===================DEBUG====================');
-  console.log(sequelizeConnection.isDefined(MODEL_NAME));
-  console.log('===================DEBUG====================');
+  logger.debug('===================DEBUG====================');
+  logger.debug(`Has model ${MODEL_NAME} defined?`, sequelizeConnection.isDefined(MODEL_NAME));
+  logger.debug('===================DEBUG====================');
 
   if (!sequelizeConnection.isDefined(MODEL_NAME)) {
     await initializeModel(sequelizeConnection);

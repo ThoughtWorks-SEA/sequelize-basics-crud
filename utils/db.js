@@ -1,5 +1,7 @@
 import Sequelize from 'sequelize';
 
+import logger from './logger.js';
+
 const dbDialect = 'postgres';
 const dbName = process.env.PG_DB_NAME || 'devtraining';
 const dbUser = process.env.PG_USER || 'devtraining';
@@ -40,9 +42,9 @@ const sequelize = new Sequelize(dbName, dbUser, dbPass, {
 const connectDb = async () => {
   try {
     await sequelize.authenticate();
-    console.log('Connection has been established successfully.');
+    logger.info('Connection has been established successfully.');
   } catch (error) {
-    console.error('Unable to connect to the database:', error);
+    logger.error('Unable to connect to the database:', error);
   }
 };
 

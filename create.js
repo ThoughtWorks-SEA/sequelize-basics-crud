@@ -1,3 +1,4 @@
+import logger from './utils/logger.js';
 import sequelizeConnection from './utils/db.js';
 
 import { initOrGetSimplePokemonModel } from './db/models/simple-pokemon.model.js';
@@ -12,9 +13,9 @@ const createPokemon = async () => {
   };
   const created = await SimplePokemon.create(pikachu);
 
-  console.log('Pikachu was saved to the database!');
-  // console.log(created); // Not recommended, since Sequelize instances have a lot of things attached. This might produce a lot of clutter.
-  console.log(created.toJSON()); // The recommended way to log an instance, but do note that this might still log sensitive data stored in database.
+  logger.info('Pikachu was saved to the database!');
+  // logger.debug(created); // Not recommended, since Sequelize instances have a lot of things attached. This might produce a lot of clutter.
+  logger.info(created.toJSON()); // The recommended way to log an instance, but do note that this might still log sensitive data stored in database.
 }
 
 export default createPokemon;

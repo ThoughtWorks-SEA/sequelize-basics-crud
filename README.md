@@ -37,8 +37,8 @@ Configure the `package.json`.
 
 Create dummy `index.js` to verify `dotenv-cli` installation.
 ```js
-console.log('Hello World!');
-console.log(`process.env.ENV_VAR=${process.env.ENV_VAR}`);
+logger.debug('Hello World!');
+logger.debug(`process.env.ENV_VAR=${process.env.ENV_VAR}`);
 ```
 
 Verify the set up with `npm start` and `npm run start:dev`.
