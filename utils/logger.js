@@ -16,7 +16,7 @@ const error = (msg, args) => {
   args === undefined ? console.error(msg) : console.error(msg, args);
 };
 
-export default {
+module.exports = {
   debug,
   info,
   error

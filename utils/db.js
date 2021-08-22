@@ -1,6 +1,6 @@
-import Sequelize from 'sequelize';
+const Sequelize = require('sequelize');
 
-import logger from './logger.js';
+// const logger = require('./logger.js');
 
 const dbDialect = 'postgres';
 const dbName = process.env.PG_DB_NAME || 'devtraining';
@@ -39,14 +39,13 @@ const sequelize = new Sequelize(dbName, dbUser, dbPass, {
   }
 });
 
-const connectDb = async () => {
-  try {
-    await sequelize.authenticate();
-    logger.info('Connection has been established successfully.');
-  } catch (error) {
-    logger.error('Unable to connect to the database:', error);
-  }
-};
+// const testDBConnection = async () => {
+//   try {
+//     await sequelize.authenticate();
+//     logger.info('Connection has been established successfully.');
+//   } catch (error) {
+//     logger.error('Unable to connect to the database:', error);
+//   }
+// };
 
-export { connectDb };
-export default sequelize;
+module.exports = sequelize;

@@ -1,17 +1,12 @@
-import logger from '../../utils/logger.js';
+const logger = require('../../utils/logger.js');
 
-/* We need to deconstruct this due to CommonJS and ESM interoperability
-    - https://jestjs.io/docs/ecmascript-modules
-    - https://stackoverflow.com/questions/47277887/node-experimental-modules-requested-module-does-not-provide-an-export-named
-*/
-import sequelize from 'sequelize';
-const { DataTypes, Model } = sequelize;
+const { DataTypes, Model } = require('sequelize');
 
 class SimplePokemon extends Model { }
 
 const MODEL_NAME = 'SimplePokemon';
 
-const initializeModel = async (sequelizeConnection) => {
+const initializeModel = (sequelizeConnection) => {
   SimplePokemon.init(
     {
       name: {
@@ -45,13 +40,15 @@ const initializeModel = async (sequelizeConnection) => {
   );
 };
 
-export const initOrGetSimplePokemonModel = async (sequelizeConnection) => {
+module.exports = (sequelizeConnection) => {
   logger.debug('===================DEBUG====================');
   logger.debug(`Has model ${MODEL_NAME} defined?`, sequelizeConnection.isDefined(MODEL_NAME));
   logger.debug('===================DEBUG====================');
 
   if (!sequelizeConnection.isDefined(MODEL_NAME)) {
-    await initializeModel(sequelizeConnection);
+    initializeModel(sequelizeConnection);
   }
+
+  // await initializeModel(sequelizeConnection);
   return SimplePokemon;
 };
