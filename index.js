@@ -9,8 +9,8 @@ import sequelizeConnection from './utils/db.js';
 // - model initialization requires a sequelize connection
 // - making initialization of model idempotent
 // - reusability of model in multiple files
-import createPokemon from './create.js';
-import findPokemons from './read.js';
+import createPokemon from './crud/create.js';
+import findPokemons from './crud/read.js';
 
 // This will drop the database tables and recreate empty tables whenever application restarts.
 // Not recommended for production level due to destructive operation, but we will use this to demonstrate.
