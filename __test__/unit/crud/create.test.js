@@ -26,7 +26,8 @@ describe('create', () => {
     jest.clearAllMocks();
   });
 
-  /* eslint-disable no-unused-expressions */
+  /* eslint-disable no-unused-vars, no-unused-expressions, jest/no-disabled-tests */
+
   it('should create a pokemon', async () => {
     const created = await createPokemon(pokemon1);
 
@@ -34,5 +35,35 @@ describe('create', () => {
     // expect(created).toEqual(pokemon1); // false
     // expect(created).toContainEqual(pokemon1); // false
     expect(created).toMatchObject(pokemon1);
+  });
+
+  it.skip('should not create pokemon without name', async () => {
+    // run
+    const created = await createPokemon({
+      ...pokemon1,
+      name: null
+    });
+
+    // assert
+  });
+
+  it.skip('should not create pokemon with empty name', async () => {
+    // run
+    const created = await createPokemon({
+      ...pokemon1,
+      name: ''
+    });
+
+    // assertion
+  });
+
+  it.skip('should not create pokemon with duplicated name', async () => {
+    // set up
+    await createPokemon(pokemon1);
+
+    // run
+    const created = await createPokemon(pokemon1);
+
+    // assertion
   });
 });
