@@ -1,13 +1,9 @@
 const Sequelize = require('sequelize');
 
-// const logger = require('./logger.js');
+const env = process.env.NODE_ENV || 'development';
+const config = require('../config/database.js')[env];
 
-const dbDialect = 'postgres';
-const dbName = process.env.PG_DB_NAME || 'devtraining';
-const dbUser = process.env.PG_USER || 'devtraining';
-const dbPass = process.env.PG_PASS;
-const dbHost = process.env.PG_HOST || 'localhost';
-const dbPort = process.env.PG_PORT || 5432;
+// const logger = require('./logger.js');
 
 // SSL connection
 // https://github.com/sequelize/sequelize/issues/10015
@@ -22,10 +18,8 @@ const dbDialectOptions = dbConnectViaSsl
     }
   : {};
 
-const sequelize = new Sequelize(dbName, dbUser, dbPass, {
-  host: dbHost,
-  port: dbPort,
-  dialect: dbDialect,
+const dbConfig = {
+  ...config,
   dialectOptions: dbDialectOptions,
   // logging: console.log,                  // Default, displays the first parameter of the log function call
   // logging: (...msg) => console.log(msg), // Displays all log function call parameters
@@ -37,15 +31,8 @@ const sequelize = new Sequelize(dbName, dbUser, dbPass, {
     acquire: 30000, // default: 60000ms
     evict: 1000 // default: 1000ms
   }
-});
+};
 
-// const testDBConnection = async () => {
-//   try {
-//     await sequelize.authenticate();
-//     logger.info('Connection has been established successfully.');
-//   } catch (error) {
-//     logger.error('Unable to connect to the database:', error);
-//   }
-// };
+const sequelize = new Sequelize(config);
 
 module.exports = sequelize;

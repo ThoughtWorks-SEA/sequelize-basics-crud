@@ -5,7 +5,6 @@ const initOrGetSimplePokemonModel = require('../db/models/simple-pokemon.model.j
 const SimplePokemon = initOrGetSimplePokemonModel(sequelizeConnection);
 
 const createPokemon = async () => {
-
   const pikachu = {
     name: 'Pikachu',
     japaneseName: 'ピカチュウ',

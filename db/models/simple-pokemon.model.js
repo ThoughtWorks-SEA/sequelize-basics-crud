@@ -41,14 +41,6 @@ const initializeModel = (sequelizeConnection) => {
 };
 
 module.exports = (sequelizeConnection) => {
-  logger.debug('===================DEBUG====================');
-  logger.debug(`Has model ${MODEL_NAME} defined?`, sequelizeConnection.isDefined(MODEL_NAME));
-  logger.debug('===================DEBUG====================');
-
-  if (!sequelizeConnection.isDefined(MODEL_NAME)) {
-    initializeModel(sequelizeConnection);
-  }
-
-  // await initializeModel(sequelizeConnection);
+  initializeModel(sequelizeConnection);
   return SimplePokemon;
 };
