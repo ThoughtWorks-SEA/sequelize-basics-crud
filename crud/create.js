@@ -1,5 +1,5 @@
 const logger = require('../utils/logger.js');
-const sequelizeConnection = require('../utils/db.js');
+const sequelizeConnection = require('../db/index');
 
 const initOrGetSimplePokemonModel = require('../db/models/simple-pokemon.model.js');
 const SimplePokemon = initOrGetSimplePokemonModel(sequelizeConnection);

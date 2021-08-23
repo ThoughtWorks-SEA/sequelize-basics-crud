@@ -1,11 +1,7 @@
 const logger = require('./utils/logger.js');
-const sequelizeConnection = require('./utils/db.js');
+const sequelizeConnection = require('./db/index.js');
 
-// [1] Uncomment to test database connection
-// const { testDBConnection } = require('./utils/db.js');
-// testDBConnection();
-
-// [2] CRUD functions as separate file scope, demonstrating:
+// CRUD functions as separate file scope, demonstrating:
 // - model initialization requires a sequelize connection
 // - making initialization of model idempotent
 // - reusability of model in multiple files
@@ -17,8 +13,8 @@ const findPokemons = require('./crud/read.js');
 // For production level, to consider Migration support (advanced topic).
 Promise
   .resolve(sequelizeConnection.sync({ force: true }))
+  // .resolve(sequelizeConnection.sync()
   .then(logger.info('All models were synchronized successfully.'))
-  .then(setTimeout(() => { logger.log('2 seconds has passed!'); }, 2 * 1000))
   .then(function () { createPokemon(); })
   .then(function () { createPokemon(); })
   .then(function () { findPokemons(); });

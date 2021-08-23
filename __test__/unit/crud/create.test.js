@@ -1,6 +1,6 @@
 const createPokemon = require('../../../crud/create.js');
 
-const db = require('../../../utils/db.js');
+const db = require('../../../db/index');
 
 jest.setTimeout(3000);
 jest.mock('../../../utils/logger.js');
@@ -14,7 +14,7 @@ const pokemon1 = {
 
 describe('create', () => {
   beforeAll(async () => {
-    await db.sync({ force: true });
+    await db.sync();
   });
 
   afterAll(async () => {

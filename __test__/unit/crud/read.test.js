@@ -1,6 +1,6 @@
 const findAllPokemons = require('../../../crud/read.js');
 
-const db = require('../../../utils/db.js');
+const db = require('../../../db/index');
 
 jest.setTimeout(3000);
 jest.mock('../../../utils/logger.js');
@@ -33,15 +33,15 @@ const pokemons = [
 ];
 
 describe('retrieve/read/find', () => {
+  const PokemonModel = require('../../../db/models/simple-pokemon.model.js')(db);
+
   beforeAll(async () => {
     await db.sync({ force: true });
-
-    const PokemonModel = require('../../../db/models/simple-pokemon.model.js')(db);
     await PokemonModel.bulkCreate(pokemons);
   });
 
   afterAll(async () => {
-    await db.truncate();
+    await PokemonModel.truncate();
     await db.close();
   });
 
