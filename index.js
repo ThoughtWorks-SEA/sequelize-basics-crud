@@ -17,10 +17,10 @@ const findPokemons = require('./crud/read.js');
 // For production level, to consider Migration support (advanced topic).
 Promise
   .resolve(sequelizeConnection.sync({ force: true }))
-  .then(logger.info("All models were synchronized successfully."))
-  .then(setTimeout(() => { console.log('2 seconds has passed!') }, 2 * 1000))
-  .then(function () { createPokemon() })
-  .then(function () { createPokemon() })
-  .then(function () { findPokemons() });
+  .then(logger.info('All models were synchronized successfully.'))
+  .then(setTimeout(() => { logger.log('2 seconds has passed!'); }, 2 * 1000))
+  .then(function () { createPokemon(); })
+  .then(function () { createPokemon(); })
+  .then(function () { findPokemons(); });
 
 logger.info('Done!');

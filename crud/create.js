@@ -18,6 +18,6 @@ const createPokemon = async () => {
   logger.info(created.toJSON()); // The recommended way to log an instance, but do note that this might still log sensitive data stored in database.
 
   return created;
-}
+};
 
 module.exports = createPokemon;

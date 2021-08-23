@@ -5,14 +5,13 @@ const initOrGetSimplePokemonModel = require('../db/models/simple-pokemon.model.j
 const SimplePokemon = initOrGetSimplePokemonModel(sequelizeConnection);
 
 const findAllPokemons = async () => {
-
-  logger.debug('========================DEBUG========================');
-  logger.debug(`findAll() is invoked!`);
-  logger.debug('========================DEBUG========================');
-
   const pokemons = await SimplePokemon.findAll();
+
+  const result = pokemons.map(model => model.dataValues);
   // logger.info(pokemons); // Sequelize model instances with a lot of clutter. Uncomment to inspect.
-  logger.info(pokemons.map(model => model.dataValues));
-}
+  logger.info(result);
+
+  return result;
+};
 
 module.exports = findAllPokemons;
