@@ -1,17 +1,17 @@
 module.exports = {
   development: {
-    username: "devtraining",
+    username: 'devtraining',
     password: null,
-    database: "devtraining",
-    host: "127.0.0.1",
-    dialect: "postgres",
+    database: 'devtraining',
+    host: '127.0.0.1',
+    dialect: 'postgres'
   },
   test: {
-    username: "devtraining",
+    username: 'devtraining',
     password: null,
-    database: "test",
-    host: "127.0.0.1",
-    dialect: "postgres",
+    database: 'test',
+    host: '127.0.0.1',
+    dialect: 'postgres'
   },
   production: {
     username: process.env.PG_USER,
@@ -19,6 +19,6 @@ module.exports = {
     database: process.env.PG_DB_NAME,
     host: process.env.PG_HOST,
     port: process.env.PG_PORT,
-    dialect: "postgres",
-  },
+    dialect: 'postgres'
+  }
 };

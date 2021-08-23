@@ -3,16 +3,13 @@ const Sequelize = require('sequelize');
 const env = process.env.NODE_ENV || 'development';
 const config = require('../config/database.js')[env];
 
-// const logger = require('./logger.js');
-
 // SSL connection
 // https://github.com/sequelize/sequelize/issues/10015
 // https://stackoverflow.com/questions/58965011/sequelizeconnectionerror-self-signed-certificat
-const dbConnectViaSsl = process.env.PG_SSL_MODE !== 'false'; // Note: Set PG_SSL_MODE=false in your local .env
-const dbDialectOptions = dbConnectViaSsl
+const dbDialectOptions = process.env.NODE_ENV === 'production'
   ? {
       ssl: {
-        require: dbConnectViaSsl,
+        require: true,
         rejectUnauthorized: false
       }
     }
@@ -33,6 +30,6 @@ const dbConfig = {
   }
 };
 
-const sequelize = new Sequelize(config);
+const sequelize = new Sequelize(dbConfig);
 
 module.exports = sequelize;

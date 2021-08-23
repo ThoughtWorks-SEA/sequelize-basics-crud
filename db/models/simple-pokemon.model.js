@@ -1,5 +1,3 @@
-const logger = require('../../utils/logger.js');
-
 const { DataTypes, Model } = require('sequelize');
 
 class SimplePokemon extends Model { }
