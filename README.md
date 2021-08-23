@@ -1,6 +1,6 @@
 # Sequelize-Basics-CRUD
 
-## Quick Start the Repo with vanilla NodeJS with ES6 support
+## Quick Start the Repo with vanilla NodeJS
 
 ```sh
 mkdir sequelize-basics-crud
@@ -10,7 +10,7 @@ npm init -y
 
 git init
 
-npm install --save-dev dotenv-cli nodemon eslint jest supertest
+npm install --save-dev nodemon eslint jest supertest
 
 echo "node_modules" >> .gitignore
 echo ".env" >> .gitignore
@@ -22,21 +22,22 @@ Configure the `package.json`.
 
 ```json
 {
-  "type": "module",
   ...
   "scripts": {
     "start": "node index.js",
-    "start:dev": "dotenv nodemon index.js",
+    "start:dev": "nodemon index.js",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "test": "jest",
+    "test:coverage": "jest --coverage"
     "test:watch": "jest --watch"
   }
 }
 ```
 
-Create dummy `index.js` to verify `dotenv-cli` installation.
+Create dummy `index.js` to verify installation.
 ```js
+
 logger.debug('Hello World!');
 logger.debug(`process.env.ENV_VAR=${process.env.ENV_VAR}`);
 ```

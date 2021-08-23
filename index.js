@@ -12,8 +12,8 @@ const findPokemons = require('./crud/read.js');
 // Not recommended for production level due to destructive operation, but we will use this to demonstrate.
 // For production level, to consider Migration support (advanced topic).
 Promise
-  .resolve(sequelizeConnection.sync({ force: true }))
-  // .resolve(sequelizeConnection.sync()
+  // .resolve(sequelizeConnection.sync({ force: true }))
+  .resolve(sequelizeConnection.sync())
   .then(logger.info('All models were synchronized successfully.'))
   .then(function () { createPokemon(); })
   .then(function () { createPokemon(); })
