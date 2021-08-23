@@ -1,4 +1,9 @@
-const findAllPokemons = require('../../../crud/read.js');
+const {
+  findAllPokemons,
+  findPokemonByName,
+  findPokemonsWithBaseHpMoreThan,
+  findPokemonByNameOrBaseHP
+} = require('../../../crud/read.js');
 
 const db = require('../../../db/index');
 
@@ -66,14 +71,26 @@ describe('retrieve/read/find', () => {
         expect(retrieved).toMatchObject(pikachu);
       });
 
-      it('should throw error', async () => {
-        expect(async () => await findPokemonByName('Gibberish')).toThrow();
+      it('should return empty when pokemon not found', async () => {
+        const retrieved = await findPokemonByName('Giberrish');
+        expect(retrieved).toMatchObject([]);
       });
     });
 
     describe('findPokemonWithBaseHpMoreThan', () => {
       it('should return array with baseHP more than', async () => {
         const retrieved = await findPokemonsWithBaseHpMoreThan(40);
+
+        expect(retrieved.length).toEqual(2);
+
+        const retrievedNames = retrieved.map(pokemon => pokemon.name);
+        expect(retrievedNames).toMatchObject(['Squirtle', 'Wartortle']);
+      });
+    });
+
+    describe('findPokemonByNameOrBaseHP', () => {
+      it('should return array of 2', async () => {
+        const retrieved = await findPokemonByNameOrBaseHP('Squirtle', 59);
 
         expect(retrieved.length).toEqual(2);
 
