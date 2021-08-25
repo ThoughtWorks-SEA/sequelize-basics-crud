@@ -1,6 +1,6 @@
-const createPokemon = require('../../../crud/create.js');
+const createPokemon = require('../create.js');
 
-const db = require('../../../db/index');
+const db = require('../../db/index');
 
 jest.setTimeout(3000);
 jest.mock('../../../utils/logger.js');
