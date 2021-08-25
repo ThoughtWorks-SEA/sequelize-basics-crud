@@ -14,4 +14,6 @@ const findAllPokemons = async () => {
   return result;
 };
 
-module.exports = findAllPokemons;
+module.exports = {
+  findAllPokemons
+};

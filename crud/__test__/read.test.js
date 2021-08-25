@@ -3,12 +3,13 @@ const {
   findPokemonByName,
   findPokemonsWithBaseHpMoreThan,
   findPokemonByNameOrBaseHP
-} = require('../../../crud/read.js');
+} = require('../read.js');
 
-const db = require('../../../db/index');
+const db = require('../../db/index');
+const PokemonModel = require('../../db/models/simple-pokemon.model.js')(db);
 
 jest.setTimeout(3000);
-jest.mock('../../../utils/logger.js');
+jest.mock('../../utils/logger.js');
 
 const pikachu = {
   name: 'Pikachu',
@@ -39,7 +40,6 @@ const pokemons = [
 ];
 
 describe('retrieve/read/find', () => {
-  const PokemonModel = require('../../../db/models/simple-pokemon.model.js')(db);
 
   beforeAll(async () => {
     await db.sync({ force: true });

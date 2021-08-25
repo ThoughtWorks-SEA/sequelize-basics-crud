@@ -3,7 +3,7 @@ const createPokemon = require('../create.js');
 const db = require('../../db/index');
 
 jest.setTimeout(3000);
-jest.mock('../../../utils/logger.js');
+jest.mock('../../utils/logger.js');
 
 const pokemon1 = {
   name: 'Pikachu',
